@@ -27,9 +27,9 @@ app.use(express.static("public"));
 
 // Database configuration with mongoose
     // localhost...
-mongoose.connect("mongodb://localhost/goophy-x001");
+//mongoose.connect("mongodb://localhost/goophy-x001");
 //mongoose.connect("mongodb://localhost/week18day3mongoose");
-//mongoose.connect("mongodb://heroku_9dnr272d:eqcj56l2npni9ute2k3sfcjdp8@ds037272.mlab.com:37272/heroku_9dnr272d");
+mongoose.connect("mongodb://heroku_9dnr272d:eqcj56l2npni9ute2k3sfcjdp8@ds037272.mlab.com:37272/heroku_9dnr272d");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
