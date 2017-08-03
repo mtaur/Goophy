@@ -7,7 +7,12 @@ var mongoose = require("mongoose");
 // Require schemas
 var Image = require("./models/Image");
 //
-//
+
+var helpers = require('./app/utils/helpers.js');
+var gooScrape = require('./nightmare.js');
+
+
+
 
 // Create a new express app
 var app = express();
@@ -40,43 +45,89 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+
+//var images = [];
+
+
 // -------------------------------------------------
 
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "/public/index.html");
 });
+
 
 // This is the route we will send GET requests to retrieve our most recent click data.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
 
+  res.send(images);
+//  res.sendFile(__dirname + "/public/index.html");
+
+    //  res.sendFile(__dirname+ "/public/index.html"); //images);
+
   // This GET request will search for the latest clickCount
-  Image.find({}).exec(function(err, doc) {
+/*  Image.find({}).exec(function(err, doc) {
 
     if (err) {
       console.log(err);
     }
     else {
-      res.send(doc);
+      // res.send(doc);
+      console.log(doc);
     }
-  });
+  });*/
+
 });
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
 app.post("/api", function(req, res) {
 
-  var title = 'wharrgarbl';  //req.body.clickID;
-  var link = 'http://i.imgur.com/FnC28.gif';  //parseInt(req.body.clicks);
+//  var title = 'wharrgarbl';  //req.body.clickID;
+//  var link = 'http://i.imgur.com/FnC28.gif';  //parseInt(req.body.clicks);
 //  var link = 'http://www.wharrgarbl.com/wharrgarbl.gif';  //parseInt(req.body.clicks);
+
+//    var stateUpdate = req.body.stateFcn;
+
+    console.log(req.body.searchStr, 'from server app.post');
+//    console.log(req.body.stateFcn);
+    var images=[];
+//    res.send([{title:'bullshit',link:'http://www.damnit.com/blah.gif'}]);
+    gooScrape(req.body.searchStr,
+            function(item)
+                {
+                    images.push( {title:'(title)', link: item} ) ;
+//                    req.body.stateFcn(images);
+//                    helpers.update.main(images);
+                }
+                ,
+            function(arr)
+                {
+                      images = arr;
+                      images = images.map(function(item){ return {title:'(title)', link: item};  });
+                      console.log('res.send this???',images);
+//                      console.log('images[0]:',images[0]);
+                      res.send(images);
+                      console.log('Process terminated?');
+//                    res.sendFile(__dirname + "/public/index.html");
+//                    res.redirect('/');
+                });
+
+
+/*            function(item){
+              images.push( {title:'(title)', link:item} );
+              res.send(images);
+            });*/
+
 
   // Note how this route utilizes the findOneAndUpdate function to update the clickCount
   // { upsert: true } is an optional object we can pass into the findOneAndUpdate method
   // If included, Mongoose will create a new document matching the description if one is not found
 
-    // Save an empty result object
+/*    // Save an empty result object
     var result = {};
+
 
     // Add the text and href of every link, and save them as properties of the result object
     result.title = title; //'image'+(images.length - 1);
@@ -96,7 +147,11 @@ app.post("/api", function(req, res) {
         else {
             console.log(doc);
         }
-    });
+    });*/
+
+
+
+
 
 
 /*  Images.findOneAndUpdate({
@@ -124,3 +179,6 @@ app.post("/api", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
+
+
+//module.exports = images;

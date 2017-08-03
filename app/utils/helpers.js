@@ -7,9 +7,14 @@ module.exports = {
   getGifs: function() {
     return axios.get("/api");
   },
+
   // Also returns a promise object we can .then() off inside our Parent component
   // This method takes in an argument for what to post to the database
-  searchGifs: function(searchStr) {
-    return axios.post("/api", searchStr);
+  searchGifs: function(searchObj) {
+    console.log(searchObj,'from axios');
+//    let data = searchObj;
+//    data.stateFcn =  console.log;//stateFcn;
+      return axios.post("/api", searchObj);
   }
+
 };

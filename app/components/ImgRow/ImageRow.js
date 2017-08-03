@@ -10,7 +10,7 @@ var ImageRow = React.createClass({
 //        this.state.imageRow = [];
 //        if(this.props.imageData){ this.state.imageRow = this.props.imageData};
 
-        return ( {imageRow: this.props.imageRow ? this.props.imageRow : []} );
+        return ( {imageRow: this.props.imageRow ? this.props.imageRow : [] } );
 /*        return { images: [],
         imageRow: []};*/
     },
@@ -30,13 +30,15 @@ var ImageRow = React.createClass({
 
         return (
             <div className="row">
-                    {this.state.imageRow.map(
+                    {this.props.imageRow.map(
                         function(item,itemNum)
                             {
                                 return (
                                     <div className="col-xs-3">
+                                        <div className="imgFit">
                                         {itemNum}: {item.link}
-                                        <img key={itemNum} src={item.link} />
+                                        <img key={itemNum + Math.floor(Math.random()*10000)} src={item.link} className="imgFit" />
+                                        </div>
                                     </div>
                                 );
                             }

@@ -6,11 +6,14 @@ var searchGifs = require("../utils/helpers").searchGifs;
 // This is the Form, our main component. It includes the banner and form element
 var Form = React.createClass({
 
-
     // Here we set a generic state associated with the text being searched for
     getInitialState: function() {
-        return { searchStr: '' };
+        return { searchStr: 'the+more+you+know' };
     },
+
+    stateSet: function(stateObj) {
+        this.setState(stateObj);
+    }.bind(this),
 
     // This function will respond to the user input
     handleTyping: function(event) {
@@ -20,13 +23,25 @@ var Form = React.createClass({
 /*        var newState = {};
         newState[event.target.id] = event.target.value;
         this.setState(newState);*/
-        this.setState ({searchStr: event.target.value});
+
+        console.log(this.state.searchStr);
+        this.setState({searchStr: event.target.value});
     },
 
     handleClick: function(event) {
-        searchGifs(this.state.searchStr);
-    }
-    ,
+          var searchTerm = this.state.searchStr;
+//        searchGifs({searchStr: searchTerm}, this.stateSet);
+          searchGifs({searchStr: searchTerm})
+             .then(function(response) {
+                 console.log('received response:',response);
+                 console.log(this.props.stateSetMain);
+                 this.props.stateSetMain(Array.from(response.data));
+//                 this.props.updateAll();
+//                 this.props.updateAll();
+//                 this.props.renderMain();
+             }.bind(this) );
+//            .then(function(response) {this.setState()});
+    },
 
     // Here we descibe this component's render method
     render: function() {

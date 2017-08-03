@@ -12,10 +12,25 @@ var helpers = require("../utils/helpers");
 // Create the Parent Component
 var Main = React.createClass({
 
+    stateSetMain: function(stateArr) {
+        console.log('UPDATE THE FREAKING MAIN.JS!!!!!');
+        console.log('UPDATE THE FREAKING MAIN.JS!!!!!');
+        console.log('UPDATE THE FREAKING MAIN.JS!!!!!');
+        console.log('UPDATE THE FREAKING MAIN.JS!!!!!');
+        console.log('State:','gifsData:',stateArr);
+        this.setState({gifsData: stateArr});
+        console.log('THIS IS THE FREAKING STATE!!!',this.state);
+    }/*.bind(this)*/
+    ,
+
+    updateAll: function() {
+        forceUpdate();
+    },
+
     // Here we set a generic state associated with the number of clicks
     getInitialState: function() {
         return {
-            gifsData: []
+            gifsData: []  //this.props.gifsData
         };
 
 /*        return helpers.getGifs()
@@ -43,9 +58,13 @@ var Main = React.createClass({
     componentDidMount: function() {
         console.log("COMPONENT MOUNTED");
 
+//        helpers.stateSet(this.stateSet);
 
         // The moment the page renders on page load, we will retrieve the previous gifs.
         // We will then utilize that click count to change the value of the click state.
+
+
+        /*
         helpers.getGifs()
             .then(function(response) {
                 // Using a ternary operator we can set newClicks to the number of clicks in our response object
@@ -59,14 +78,16 @@ var Main = React.createClass({
                 console.log('gifsData:',this.state.gifsData);
 
             }.bind(this));
+*/
+
     },
 
     // Whenever our component updates, the code inside componentDidUpdate is run
     componentDidUpdate: function(prevState) {
         console.log("COMPONENT UPDATED");
 
-/*
-        helpers.getGifs()
+//          this.render();
+/*        helpers.getGifs()
             .then(function(response) {
                 // Using a ternary operator we can set newClicks to the number of clicks in our response object
                 // If we don't have any clicks in our database, set newClicks to 0
@@ -78,8 +99,7 @@ var Main = React.createClass({
 //                console.log("Gifs found", gifsFound);
                 console.log('gifsData:',this.state.gifsData);
 
-            }.bind(this));
-*/
+            }.bind(this));*/
 
 /*        // We will check if the gifs have changed...
         if (prevState.gifsData !== this.state.gifsData) {
@@ -93,12 +113,16 @@ var Main = React.createClass({
         }*/
 
     },
+
     // Whenever the button is clicked we'll use setState to add to the clickCounter
     // Note the syntax for setting the state
 
     handleData: function(updater) {
 //        this.setState({ gifsData: updater(this.state.gifsData) });
-        helpers.getGifs()
+
+            this.render();
+
+/*        helpers.getGifs()
             .then(function(response) {
                 // Using a ternary operator we can set newClicks to the number of clicks in our response object
                 // If we don't have any clicks in our database, set newClicks to 0
@@ -108,7 +132,9 @@ var Main = React.createClass({
                 });
                 console.log("RESULTS", response);
                 console.log("Gifs found", gifsFound);
-            }.bind(this));
+            }.bind(this));*/
+
+
     },
 
 
@@ -137,7 +163,7 @@ var Main = React.createClass({
                 Note how we have an onClick event associate with our handleClick function.
               */}
 
-                            <Form />
+                            <Form stateSetMain={this.stateSetMain} updateAll={this.updateAll} />
 
                     </div>
                     {/* This represents the "Parent" */}
@@ -150,9 +176,9 @@ var Main = React.createClass({
                             <div className="panel-body text-center">
 
                                 {/* This won't be in the final version... */}
-                                <h1>{this.state.gifsData[0] && this.state.gifsData[0].link}</h1>
+                                {/*<h1>{this.state.gifsData[0] && this.state.gifsData[0].link}</h1>*/}
 
-                                {this.state.gifsData && '3'}
+                                {/*{this.state.gifsData && '3'}*/}
 
                                 {/*
                   Here we'll deploy the child component.

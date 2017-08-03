@@ -9,7 +9,6 @@ var Images = React.createClass({
     rowParse: function(data) {
 
         var imagesPassed = data;
-//        this.state.imageRows = [];
         var imgRows = [];
 
         for(var i=0; 4*i<imagesPassed.length; i++)
@@ -22,27 +21,42 @@ var Images = React.createClass({
             console.log('imgRows['+i+']:',imgRows[i]);
         }
 
-//        setState( {} );
-
         return imgRows;
-
-//        this.setState({ imageRows: imgRows });
 
     },
 
     // Here we set a generic state associated with the images passed into the rows
     getInitialState: function() {
 
+        var rowData = this.rowParse(this.props.gifsData);
+
         return {
-//            gifsData: this.props.gifsData,
-            imageRows: this.rowParse(this.props.gifsData) //imgRows
+            imageRows: rowData //this.rowParse(this.props.gifsData) //imgRows
         };
     },
 
     componentDidUpdate: function() {
-        this.setState({ imageRows: this.rowParse(this.props.gifsData) });
+        console.log('COMPONENT DID UPDATE FIRED FROM IMAGES.JS!!!!');
+
+/*        var newRows = this.rowParse(this.props.gifsData);
+//        this.setState({ imageRows: this.rowParse(this.props.gifsData) });
+        this.setState({ imageRows: newRows });
         console.log(this.state.imageRows);
+        this.render();*/
+
     },
+
+    componentDidMount: function() {
+
+/*        console.log('COMPONENT DID MOUNT FIRED FROM IMAGES.JS!!!!');
+        var newRows = this.rowParse(this.props.gifsData);
+//        this.setState({ imageRows: this.rowParse(this.props.gifsData) });
+        this.setState({ imageRows: newRows });
+        console.log(this.state.imageRows);
+//        this.render();*/
+
+    },
+
 
 /*    // This function will respond to the user input
     handleChange: function(event) {
@@ -59,24 +73,37 @@ var Images = React.createClass({
                     {this.state.imageRows.map()}
 */
 
-
+/*
+    componentWillReceiveProps: function(nextProps) {
+        if(nextProps) {
+            console.log('IMMABOUT TO UPDATE YO!!!');
+            this.render();
+        }
+    },
+*/
 
     // Here we descibe this component's render method
     render: function() {
 
         console.log('state of rows', this.state.imageRows);
+        console.log('prop of rows', this.rowParse(this.props.gifsData));
 
         return (
             <div className="row">
                 <div className="col-xs-1"> </div>
                 <div className="col-xs-10">
-                    456 {this.state.imageRows} 123
-                    <ImageRow key = '100' imageRow={[{link:'5'},{link:'6'},{link:'7'},{link:'8'}]} />
-                    <ImageRow key = '101' imageRow={this.state.imageRows[0]} />
+{/*                    456 {this.state.imageRows[0].link} 123*/}
+{/*                    <ImageRow key = '100' imageRow={[{link:'5'},{link:'6'},{link:'7'},{link:'8'}]} />*/}
+{/*                    <ImageRow key = '101' imageRow={this.state.imageRows[0]} />*/}
+{/*                    (Above didn't work?)*/}
                     {this.rowParse(this.props.gifsData).map(
                         function(row,rowNum)
                             { return <ImageRow key={rowNum} imageRow={row} />;}
                         )}
+{/*                    {this.state.imageRows.map(
+                        function(row,rowNum)
+                            { return <ImageRow key={rowNum+Math.floor(10000*Math.random())} imageRow={row} />;}
+                        )}*/}
 
                 </div>
                 <div className="col-xs-1"> </div>
