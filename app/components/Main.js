@@ -146,7 +146,7 @@ var Main = React.createClass({
     // Here we render the function
     render: function() {
         return (
-            <div className="container">
+            <div className="container wide-container">
 
                 <div className="row">
 
