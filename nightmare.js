@@ -22,6 +22,7 @@ function googleScrape(searchStr,itemCB,callback) {
 
     var arr = [];
     var ind = 0;
+    var RESMAX = 12;
 
 
     function getPic(index) {
@@ -44,7 +45,15 @@ function googleScrape(searchStr,itemCB,callback) {
                         arr=result;
                         itemCB(arr[arr.length-1]);
                         ind++;
-                        if(arr.length<20 /*6*/ ) {getPic(ind);}
+                        if(ind%20===19) {
+                            nightmare
+                                .wait('.rg_ic').wait(500) // wait(2000)
+                                .evaluate(function(ind){
+                                    for(var i=ind; i<ind+20; i++)
+                                    {$('.rg_ic').eq(i).attr('scrapeID','num'+i);}
+                                },ind).then( function(){getPic(ind);} )
+                        }
+                        else if(arr.length<RESMAX /*6*/ ) {getPic(ind);}
                         else {
 
 /*                            for(var j=0; j<arr.length; j++) {

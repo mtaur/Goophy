@@ -61,7 +61,25 @@ app.get("/", function(req, res) {
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
 
-  res.send(images);
+    var wtf_wikipedia = require("wtf_wikipedia");
+
+//    wtf_wikipedia.parse(someWikiScript)
+// {sections:[...], infobox:{}, categories:[...], images:[] }
+
+//fetch wikipedia markup from api..
+    wtf_wikipedia.from_api("League of Legends", "en", function(markup){
+//    wtf_wikipedia.from_api("Toronto", "en", function(markup){
+        var obj= wtf_wikipedia.parse(markup)
+//        var mayor= obj.infobox.leader_name
+        // "John Tory"
+        console.log(obj);
+        res.send(obj);
+
+    });
+
+
+
+//  res.send(images);
 //  res.sendFile(__dirname + "/public/index.html");
 
     //  res.sendFile(__dirname+ "/public/index.html"); //images);
