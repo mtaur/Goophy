@@ -10,7 +10,7 @@ var Image = require("./models/Image");
 
 var helpers = require('./app/utils/helpers.js');
 var gooScrape = require('./nightmare.js');
-
+var wikiQuery = require('./wikiparse.js');
 
 
 
@@ -45,6 +45,7 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+var resmax = 24;
 
 //var images = [];
 
@@ -61,6 +62,11 @@ app.get("/", function(req, res) {
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
 
+    function send(obj) {res.send(obj);}
+
+    wikiQuery('League of Legends', send);
+/*
+
     var wtf_wikipedia = require("wtf_wikipedia");
 
 //    wtf_wikipedia.parse(someWikiScript)
@@ -76,6 +82,7 @@ app.get("/api", function(req, res) {
         res.send(obj);
 
     });
+*/
 
 
 
@@ -112,7 +119,7 @@ app.post("/api", function(req, res) {
 //    console.log(req.body.stateFcn);
     var images=[];
 //    res.send([{title:'bullshit',link:'http://www.damnit.com/blah.gif'}]);
-    gooScrape(req.body.searchStr,
+    gooScrape(req.body.searchStr,24,
             function(item)
                 {
                     images.push( {title:'(title)', link: item} ) ;

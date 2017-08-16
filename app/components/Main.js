@@ -4,6 +4,7 @@ var React = require("react");
 // Here we include all of the sub-components
 var Form = require("./Form");
 var Images = require("./Images");
+var Wiki = require("./Wiki");
 
 // Requiring our helper for making API calls
 var helpers = require("../utils/helpers");
@@ -153,6 +154,8 @@ var Main = React.createClass({
 {/*                    <div className="jumbotron">*/}
                     <div>
                         <h2>Goophy - Animated gif search powered by Google Images</h2>
+                        <h3>using npm Nightmare</h3>
+                        <div>Implemented in React.JS</div>
                         <hr />
                         <p>
                             <em>Now backed by the power of MongoDB!</em>
@@ -184,7 +187,7 @@ var Main = React.createClass({
                   Here we'll deploy the child component.
                   We'll pass it the parent's click counter as a "state"
                 */}
-                                <Images gifsData={this.state.gifsData} />
+                                <Wiki gifsData={this.state.gifsData} />
 
                             </div>
                         </div>

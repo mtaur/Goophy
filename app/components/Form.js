@@ -8,7 +8,7 @@ var Form = React.createClass({
 
     // Here we set a generic state associated with the text being searched for
     getInitialState: function() {
-        return { searchStr: 'the+more+you+know' };
+        return { searchStr: 'The More You Know' };
     },
 
     stateSet: function(stateObj) {

@@ -9,7 +9,7 @@ const options = {
 var Image = require('./models/Image.js');
 
 /////
-function googleScrape(searchStr,itemCB,callback) {
+function googleScrape(searchStr,resmax,itemCB,callback) {
 
 //    itemCB('http://www.wharrgarbl.com/wharrgarbl.gif');
 
@@ -22,7 +22,8 @@ function googleScrape(searchStr,itemCB,callback) {
 
     var arr = [];
     var ind = 0;
-    var RESMAX = 12;
+    var RESMAX = resmax;
+//    var RESMAX = 12;
 
 
     function getPic(index) {

@@ -35,9 +35,9 @@ var ImageRow = React.createClass({
                             {
                                 return (
                                     <div className="col-xs-3">
-                                        <div className="imgFit">
-                                        {itemNum}: {item.link}
+                                        <div className="imgFit bgcolor">
                                         <img key={itemNum + Math.floor(Math.random()*10000)} src={item.link} className="imgFit" />
+                                            <a href={item.link}>{item.link}</a>
                                         </div>
                                     </div>
                                 );
