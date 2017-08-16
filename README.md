@@ -3,6 +3,9 @@
 * Uses React.JS display.
 * Uses Node.js server.
 
+## Giphy + Google = Goophy
+This does not use Giphy at all, so the "+" is a slight abuse of notation.  Actually, the whole point of this application is to simulate the functionality of Giphy by scraping results from the Google search engine.
+
 ## There is a sequel!
 To see the same search engine results integrated into a simplified Wikipedia pages, look at the sequel: https://github.com/mtaur/Goophy
 
