@@ -3,6 +3,9 @@
 * Uses React.JS display.
 * Uses Node.js server.
 
+## There is a sequel!
+To see the same search engine results integrated into a simplified Wikipedia pages, look at the sequel: https://github.com/mtaur/Goophy
+
 ## Good luck deploying this to a Heroku server
 Seriously, Heroku doesn't support npm Nightmare or Electron in general.  If you can get it to work, I'd be glad to hear about it! mothwentbad@gmail.com
 
@@ -22,3 +25,6 @@ Notice that Google Images requires JavaScript to display the results page with i
 
 ## Use:
 This is a Node application.  You will need to run the command __node server__ from the console.  Then open __localhost:3001__ in the web browser.  Type a search and click the Search button _(hitting Enter won't work in this version!)_.  Wait.  (Check the server console to see progress)
+
+## TODO:
+It would most likely be relatively simple to change the image types to line art, still images, YouTube video, etc. with the addition of a dropdown menu menu.
