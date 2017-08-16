@@ -3,6 +3,9 @@
 * Uses React.JS display.
 * Uses Node.js server.
 
+## Good luck deploying this to a Heroku server
+Seriously, Heroku doesn't support npm Nightmare or Electron in general.  If you can get it to work, I'd be glad to hear about it! mothwentbad@gmail.com
+
 ## Giphy has an API, but they don't have the best search engine.
 Sometimes Giphy does well.  Popular memems can be found reliably using well-established and correct search terms.
 
