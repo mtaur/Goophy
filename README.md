@@ -1,4 +1,4 @@
-# Goophypedia
+# Goophy
 * Google images scrape using npm Nightmare.
 * Uses React.JS display.
 * Uses Node.js server.
